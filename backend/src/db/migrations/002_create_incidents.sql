@@ -1,0 +1,33 @@
+-- Incidents/Reports table
+CREATE TABLE IF NOT EXISTS incidents (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  incident_type ENUM('major_accident', 'heavy_congestion', 'road_construction') NOT NULL,
+  latitude DECIMAL(10, 8) NOT NULL,
+  longitude DECIMAL(11, 8) NOT NULL,
+  location_description VARCHAR(500),
+  reported_latitude DECIMAL(10, 8),
+  reported_longitude DECIMAL(11, 8),
+  gps_distance_meters DECIMAL(10, 2),
+  number_of_vehicles INT,
+  description TEXT NOT NULL,
+  severity ENUM('minor', 'medium', 'major') DEFAULT 'medium',
+  is_verified BOOLEAN DEFAULT FALSE,
+  verified_by INT,
+  verified_at DATETIME,
+  credibility_score DECIMAL(3, 2) DEFAULT 0.5,
+  similar_reports_count INT DEFAULT 0,
+  coins_awarded INT DEFAULT 0,
+  status ENUM('active', 'resolved', 'false_positive') DEFAULT 'active',
+  resolved_at DATETIME,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (verified_by) REFERENCES users(id) ON DELETE SET NULL,
+  INDEX idx_location (latitude, longitude),
+  INDEX idx_type (incident_type),
+  INDEX idx_status (status),
+  INDEX idx_verified (is_verified),
+  INDEX idx_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

@@ -1,0 +1,33 @@
+{
+  "name": "etraffic",
+  "version": "1.0.0",
+  "description": "Ethiopia-tailored Traffic Monitoring and Incident Reporting Platform",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "migrate": "cd backend && npm run migrate",
+    "seed": "cd backend && npm run seed"
+  },
+  "keywords": [
+    "traffic",
+    "monitoring",
+    "ethiopia",
+    "real-time",
+    "incident-reporting"
+  ],
+  "author": "ETraffic Development Team",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/multer": "^2.0.0"
+  }
+}

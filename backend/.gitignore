@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.local
+
+# Credentials (IMPORTANT: Never commit Google credentials)
+credentials/
+*.json
+!package.json
+!tsconfig.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Uploads
+uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
